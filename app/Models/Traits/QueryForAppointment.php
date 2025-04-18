@@ -20,7 +20,7 @@ trait QueryForAppointment
 
     #[Scope]
     protected function forDoctor(Builder $query, User $user): void{
-        $query->with(['patient.user', 'schedule'])
-        ->where('patient_id', $user->patient->id);
+        $query->with(['doctor.user', 'schedule'])
+        ->where('doctor_id', $user->doctor->id);
     }
 }
