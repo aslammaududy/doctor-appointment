@@ -14,7 +14,7 @@ use Illuminate\Validation\Rule;
 class AppointmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the appointment.
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Make an appointment.
      */
     public function store(AppointmentRequest $request)
     {
@@ -54,7 +54,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified appointment.
      */
     public function show(Appointment $appointment)
     {
@@ -63,7 +63,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified appointment.
      */
     public function update(UpdateAppointmentRequest $request, Appointment $appointment)
     {
@@ -81,7 +81,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Cancel the specified appointment.
      */
     public function destroy(Appointment $appointment)
     {

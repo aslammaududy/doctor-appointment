@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Gate;
 class ScheduleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the schedule.
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a schedule.
      */
     public function store(ScheduleRequest $request)
     {
@@ -47,7 +47,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified schedule.
      */
     public function show(Schedule $schedule)
     {
@@ -56,7 +56,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified schedule.
      */
     public function update(ScheduleRequest $request, Schedule $schedule)
     {
@@ -78,7 +78,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified schedule.
      */
     public function destroy(Schedule $schedule)
     {
