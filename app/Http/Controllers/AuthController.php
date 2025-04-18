@@ -10,13 +10,21 @@ use App\Models\Patient;
 
 class AuthController extends Controller
 {
+    /**
+     * Register the patient.
+     * 
+     * @unauthenticated
+     */
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
-            'role' => 'required|in:admin,doctor,patient',
+            'role' => 'required|in:patient',
+            'gender' => 'required|in:L,P',
+            'birth_date' => 'required|date_format:Y-m-d',
+            'address' => 'required|string',
         ]);
 
         $user = User::create([
@@ -26,18 +34,21 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        if($user->role == 'patient'){
-            Patient::create([
-                'user_id' => $user->id,
-                'birth_date' => now()->subYears(20), // default umur 20 tahun
-                'gender' => 'L',
-                'address' => '-',
-            ]);
-        }
+        Patient::create([
+            'user_id' => $user->id,
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
+            'address' => $request->address,
+        ]);
 
         return response()->json(['message' => 'User registered successfully.']);
     }
 
+    /**
+     * Login the user.
+     * 
+     * @unauthenticated
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -62,6 +73,10 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Logout the user.
+     * 
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
